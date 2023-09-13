@@ -20,7 +20,7 @@ breadRouter.get('/:arrayIndex', (req, res) => {
         bread: breadData[req.params.arrayIndex]
     })
     } else {
-        res.send('404')
+        res.render('error404')
     }
 })
 
