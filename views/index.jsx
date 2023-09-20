@@ -1,5 +1,5 @@
 const React = require('react')
-const Default = require('./layouts/Default')
+const Default = require('./layouts/default')
 
 
 //So the "breads" defined in the argument of the function is pulling from the breads_controller.js file. That variable connects the breadData
@@ -20,6 +20,10 @@ function Index({breads, title}) {
                     })
                 }
             </ul>
+            <div className="newButton">
+                <a href="/breads/new"><button>Add a new bread</button></a>
+            </div>
+
         </Default>
     )
 }
