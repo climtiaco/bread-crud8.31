@@ -11,7 +11,7 @@ breadRouter.get('/', (req, res) => {
     res.render('index',
     {
         breads: breadData,
-        title: 'Index Page'
+        title: 'Default title',
     })
 })
 breadRouter.post('/', (req, res) => {
@@ -33,6 +33,13 @@ breadRouter.post('/', (req, res) => {
 breadRouter.get('/new', (req, res) => {
     res.render('new')
 })
+//EDIT
+breadRouter.get('/:indexArray/edit', (req, res) => {
+  res.render('edit', {
+    bread: breadData[req.params.indexArray],
+    index: req.params.indexArray
+  })
+})
 
 //SHOW
 //Here I'm changing res.send(breadData[req.params.arrayIndex]) now to res.render('Show', {}) so that it refers to the show.jsx page and then I can add that second argument as an object that reads exactly what I want it to 
@@ -46,6 +53,19 @@ breadRouter.get('/:arrayIndex', (req, res) => {
         res.render('error404')
     }
 })
+
+
+//UPDATE
+breadRouter.put('/:arrayIndex', (req, res) => {
+  if (req.body.hasGluten === 'on') {
+    req.body.hasGluten = true
+  } else {
+    req.body.hasGluten = false
+  }
+  breadData[req.params.arrayIndex] = req.body
+  res.redirect(`/breads/${req.params.arrayIndex}`)
+})
+
 
 
 // CREATE
